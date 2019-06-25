@@ -19,9 +19,6 @@ RUN mkdir -p /opt/jruby/etc \
 		echo 'update: --no-document'; \
 	} >> /opt/jruby/etc/gemrc
 
-RUN gem install --version "1.16.6" bundler
-RUN gem install rake net-telnet xmlrpc
-
 # install things globally, for great justice
 # and don't create ".bundle" in all our apps
 ENV GEM_HOME /usr/local/bundle
@@ -33,6 +30,8 @@ ENV PATH $BUNDLE_BIN:$PATH
 RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
 	&& chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
 
+RUN gem install --version "1.16.6" bundler
+RUN gem install rake net-telnet xmlrpc
 
 RUN gem install warbler -v '2.0.5'
 
