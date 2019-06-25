@@ -33,6 +33,9 @@ RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
 RUN gem install --version "1.16.6" bundler
 RUN gem install rake net-telnet xmlrpc
 
+# workaround for warbler bundler gem lookup
+RUN ln -s /usr/local/bundle/gems /opt/jruby/lib/ruby/stdlib/gems
+
 RUN gem install warbler -v '2.0.5'
 
 CMD [ "bash" ]
